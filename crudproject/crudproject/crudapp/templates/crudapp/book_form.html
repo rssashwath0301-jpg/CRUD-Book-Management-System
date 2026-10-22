@@ -1,0 +1,14 @@
+<h1>{% if book %}Update Price{% else %}Add Book{% endif %}</h1>
+<form method="post">
+  {% csrf_token %}
+  {% if book %}
+    <p>Title: {{ book.title }}</p>
+    <p>Author: {{ book.author }}</p>
+  {% else %}
+    <p>Title: <input type="text" name="title" required></p>
+    <p>Author: <input type="text" name="author" required></p>
+  {% endif %}
+  <p>Price: <input type="number" name="price" value="{{ book.price }}" required></p>
+  <button type="submit">Save</button>
+  <a href="{% url 'book_list' %}">Back</a>
+</form>
